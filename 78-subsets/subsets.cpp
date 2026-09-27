@@ -1,18 +1,21 @@
 class Solution {
 public:
-    void helper(vector<int>& arr, vector<int>& small, vector<vector<int>>& big,
-                int idx) {
-                    big.push_back(small);
-        for (int i = idx; i < arr.size(); i++) {
-            small.push_back(arr[i]);
-            helper(arr, small,big,i+1);
-            small.pop_back();
-        }
+void solve(  vector<int>&arr,  vector<int>&small, vector<vector<int>>&big,int idx){
+    if(idx==arr.size()){
+        big.push_back(small);
+        return;
     }
-    vector<vector<int>> subsets(vector<int>& arr) {
-        vector<int> small={};
-        vector<vector<int>> big;
-        helper(arr, small, big, 0);
+    small.push_back(arr[idx]);
+    solve(arr,small,big,idx+1);
+    small.pop_back();
+    solve(arr,small,big,idx+1);
+
+}
+    vector<vector<int>> subsets(vector<int>&arr) {
+        vector<int>small={};
+        vector<vector<int>>big;
+
+        solve(arr,small,big,0);
         return big;
     }
 };
