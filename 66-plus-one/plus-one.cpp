@@ -1,6 +1,6 @@
 class Solution {
 public:
-    vector<int> plusOne(vector<int>& arr) {
+    vector<int> plusOne(vector<int>&arr) {
         for(int i=arr.size()-1;i>=0;i--){
             if(arr[i]==9){
                 arr[i]=0;
@@ -9,8 +9,8 @@ public:
                 return arr;
             }
         }
-        vector<int>ans(arr.size()+1,0);
-        ans[0]=1;
-        return ans;
+        arr.resize(arr.size()+1);
+        arr[0]=1;
+        return arr;
     }
 };
