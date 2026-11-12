@@ -1,42 +1,28 @@
 class Solution {
 public:
-int increasing(vector<int>&arr){
-    int longest=1;
-    int n=arr.size();
-    for(int i=0;i<n;i++){
-        int length=0;
-        for(int j=i+1;j<n;j++){
-            if(j-1>=0 && arr[j] > arr[j-1]){
-                 length=j-i+1;
-                 longest=max(longest,length);
-            }else{
-                break;
-            }
-               
-        }
-    }
-    return longest;
-}
+    int longestMonotonicSubarray(vector<int>&arr) {
+        int longest1=1;
+        int longest2=1;
+        int longest=1;
+         if (arr.empty()) return 0;
 
-int decreasing(vector<int>&arr){
-    int longest=1;
-     int n=arr.size();
-    for(int i=0;i<n;i++){
-        int length=0;
-        for(int j=i+1;j<n;j++){
-            if(j-1>=0 && arr[j] < arr[j-1]){
-                 length=j-i+1;
-                 longest=max(longest,length);
-            }else{
-                break;
+        for(int i=1;i<arr.size();i++){
+            
+            if(arr[i] > arr[i-1]){
+                longest1++;
+                longest2=1;
             }
-               
-        }
-    }
-    return longest;
+            else if(arr[i] < arr[i-1]){
+            longest2++;
+            longest1=1;
+            }
+            else{
+                longest1=1;
+                longest2=1;
+            }
 
-}
-    int longestMonotonicSubarray(vector<int>& nums) {
-        return max(increasing(nums),decreasing(nums));
+            longest=max(longest,max(longest1,longest2));
+        }
+        return longest;
     }
 };
