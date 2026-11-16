@@ -7,6 +7,7 @@ public:
         int n = grid[0].size();
         queue<pair<int, int>> q;
         int p = 0;
+        int edges = 0;
 
         q.push({sr, sc});
         visited[sr][sc] = 1;
@@ -22,9 +23,13 @@ public:
                 int nr = r + dr[k];
                 int nc = c + dc[k];
 
+              
+
                 if (nr >= 0 && nr < m && nc >= 0 && nc < n &&
                     grid[nr][nc] == 1) {
-                    p = p - 1;
+                    if (k == 0 || k == 2)
+                        edges++;
+
                     if (!visited[nr][nc]) {
                         q.push({nr, nc});
                         visited[nr][nc] = 1;
@@ -32,7 +37,7 @@ public:
                 }
             }
         }
-        return p;
+        return p - edges * 2;
     }
     int islandPerimeter(vector<vector<int>>& grid) {
         int m = grid.size();
