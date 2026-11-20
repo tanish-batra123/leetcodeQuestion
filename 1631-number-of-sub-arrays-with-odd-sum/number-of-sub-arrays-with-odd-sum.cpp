@@ -7,7 +7,7 @@ public:
         long long cnt=0;
         long long sum=0;
         int n=arr.size();
-        long long total=n*1LL*(n+1)/2;
+        long long total=(n*1LL*(n+1)/2)%mod;
         for(int i=0;i<n;i++){
             sum+=arr[i];
             int rem=sum%2;
@@ -17,6 +17,6 @@ public:
             mpp[rem]++;
         }
 
-        return (total%mod-cnt+mod)%mod;
+        return (total-cnt+mod)%mod;
     }
 };
