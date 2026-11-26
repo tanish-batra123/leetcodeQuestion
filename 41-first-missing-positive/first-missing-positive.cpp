@@ -3,7 +3,7 @@ public:
     int firstMissingPositive(vector<int>& arr) {
         unordered_set<int>st;
         for(int ele:arr){
-            if(ele>0)
+            
             st.insert(ele);
         }
 
